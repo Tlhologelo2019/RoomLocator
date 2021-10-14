@@ -1,0 +1,34 @@
+{% extends 'registration/another_base.html' %}
+{% block title %}Edit Profile{% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="container">
+	<div class="row mt-5">
+		<div class="col-md-6 pt-1">
+			<h4>hello there To change your status click on the <b>checkbox</b> to become one of our staff members</h4>
+			<h5>Offers for our staff</h5>
+			<ul>
+				<li>You will be able to post your Rooms</li>
+				<li>Add location of your room to the map</li>
+				<li>Recieve reviews from tenants about you rooms</li>
+				<li>Have a blog page </li>
+			</ul>
+		</div>
+		<div class="col-md-6 ">
+			<div class="border p-3">
+				<h3>Change Your status</h3>
+				<hr>
+				<form action="" method="POST">
+					{% csrf_token %}
+
+					{{form|crispy}}
+
+					<input class="btn btn-success" type="submit" value="Login">
+				</form>
+
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

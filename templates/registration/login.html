@@ -1,0 +1,84 @@
+{% extends 'registration/another_base.html' %}
+{% block title %}
+	login
+{% endblock %}
+{% block content %}
+<div class="row">
+	
+		<div class="col-3">
+		
+		<div class="welcome">
+			<h1 class="welcome__header">Welcome back !</h1>
+			<p class="welcome__message">
+
+				<!-- WORK WITH TIME TO CHANGE THE MESSAGE DISPLAYED DEPENDENT ON TIME OF THE DAY -->
+				 {% if time.hour >= 22 or time.hour < 10%}
+
+					Good morning , today is the {{ time.day }} of {{time.month }} Have a great day Good luck
+
+				
+					
+				{% elif time.hour >= 10 %}
+
+
+				Good afternoon i hope you are having a great day Good luck , put on more effort everyday
+				
+
+				{% elif time.hour >= 16  %}
+				
+					Good evining hope you had a great day sit well and drink some hot tea 
+
+				{% endif %}
+			</p>
+		</div>
+		</div>
+		
+		
+<div class="col-9">
+	<div class="card">
+		{% if form.errors %}
+		<p class="alert alert-danger">Your username and password didn't match. Please try again.</p>
+	  {% endif %}
+		<h3 class="card__title">
+			Login
+		</h3>
+		<form class="form" method="POST">
+			{% csrf_token %}
+			 <div>
+				<input 
+				type="text" 
+				name="username" 
+				autocapitalize="none" 
+				autocomplete="username" 
+				maxlength="255" 
+				required 
+				id="id_username"
+				class="form__input" 
+				placeholder="Email"
+				>
+			
+			 </div>
+	
+			 <div>
+				 <input 
+				 type="password" 
+				 name="password" 
+				 class="form__input" 
+				 autocomplete="current-password" 
+				 required id="id_password"
+				 placeholder="password"
+				 />
+			 </div>
+	
+			<button class="form__button">Login</button>
+		</form>
+	
+		<div class="card__footer">
+			<a href="{% url 'accounts:reset_password' %}">Forgot Password ?</a>
+			<a href="{% url 'accounts:register' %}">Create a new account</a>
+		</div>
+	</div>
+</div>
+
+</div>
+{% endblock %}

@@ -1,9 +1,9 @@
 //login password validation
-const strengthMeter = document.getElementById('strength-meter')
-const passwordInput = document.getElementById('id_password1')
-const confirmPasswordInput = document.getElementById('id_password2')
-const reasonsContainer = document.getElementById('reasons')
-const confirmReasonsContainer = document.getElementById('confirm-reasons')
+const strengthMeter             = document.getElementById('strength-meter')
+const passwordInput             = document.getElementById('id_password1')
+const confirmPasswordInput      = document.getElementById('id_password2')
+const reasonsContainer          = document.getElementById('reasons')
+const confirmReasonsContainer   = document.getElementById('confirm-reasons')
 
 
 // An event listener that listens to the input from the password field and iterate through the functions

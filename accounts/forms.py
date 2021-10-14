@@ -1,5 +1,9 @@
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm , AuthenticationForm
 from django.contrib.auth import get_user_model
+from django.db import models
+from django.db.models import fields
+
+
 Usermodel = get_user_model()
 from django import forms
 
@@ -20,3 +24,4 @@ class SignUpForm(UserCreationForm):
 
 
 # attrs={'class': 'form-control'}
+

@@ -1,5 +1,9 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser ,PermissionsMixin , BaseUserManager
+from django.contrib.auth.models import AbstractBaseUser ,PermissionsMixin , BaseUserManager, User 
+
+
+
+    
 
 class UserAccountManager(BaseUserManager):
     def create_user(self , email, first_name , last_name , cellphone  , password =None):
@@ -32,6 +36,7 @@ class UserAccount(AbstractBaseUser , PermissionsMixin):
     cellphone       = models.CharField(max_length=15, unique = True)
     is_active       = models.BooleanField(default=True)
     is_staff        = models.BooleanField(default=False)
+    # type_of_user    = models.ForeignKey(TypeOfUser,on_delete=models.CASCADE)
 
     objects = UserAccountManager()
 
@@ -46,3 +51,5 @@ class UserAccount(AbstractBaseUser , PermissionsMixin):
     
     def __str__(self):
         return self.email
+
+
