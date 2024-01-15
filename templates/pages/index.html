@@ -22,7 +22,7 @@ Room Locator
             </div>
         </div>
         <div class = "head-bottom flex">
-            <h2>A SITE TO GET YOURSELF A NICE COMFORTABLE ACCOMMODATION</h2>
+            <h2>Affordable & Comfortable Accomodations</h2>
             <p style="width:50%; font-size: 20px; border: 1px solid white; padding:15px; background-color: #fff; color:black;margin-top: 20px;">We are here to help you get yourself a save place to stay,
                  our website is open 24/7 for you to search for your dream accommotion.
                 It is either your a student or you're working far from home we're here for you</p>
@@ -42,13 +42,15 @@ Room Locator
              <li><a href="#customers">Customers</a></li>
          </ul>
          {% if request.user.is_authenticated %}
-         <button class="btn sign-up"><a href="{% url 'accounts:logout' %}">Logout</a></button>
-         <button class="btn log-in"><a href="{% url 'accounts:profile' %}">profile</a></button>
          
+         <button class="btn log-in"><a href="{% url 'advert:profile' request.user.id %}">profile</a></button>
+         <button class="btn sign-up"><a href="{% url 'accounts:logout' %}">Logout</a></button>
      {% else %}
+     
      <button class="btn sign-up"><a href="{% url 'accounts:register' %}">Sign up</a></button>
      <button class="btn log-in"><a href="{% url 'accounts:login' %}">Log in</a></button>
      {% endif %}
+     <button class="btn sign-up"><a href="{% url 'advert:timeline' %}">TimeLine</a></button>
        
      </div>
      <!-- end of side navbar-->

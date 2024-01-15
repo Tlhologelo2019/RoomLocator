@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.views import generic
 from django.contrib.auth.forms import UserCreationForm
@@ -9,6 +10,8 @@ from .forms import   SignUpForm
 from django.contrib.auth.mixins import LoginRequiredMixin 
 import datetime
 from django.utils import timezone
+from .models import *
+
 # Create your views here.
 
 class UserRegisterView(generic.FormView):
@@ -50,20 +53,19 @@ class UserEditView(generic.UpdateView):
     model = UserAccount
     template_name = 'registration/edit_profile.html'
     fields = ('is_staff',)
-    success_url = reverse_lazy('accounts:profile')
+    success_url = reverse_lazy('accounts:home')
 
     def get_object(self):
         return self.request.user
 
+    
+
 
 def home(request,*arg,**kwarg):
     now = datetime.datetime.today
+
     return render(request,'pages/index.html', {"time":now})
 
-def profile_view(request):
 
-    now = datetime.datetime.today
-
-    return render(request, "pages/profile.html",{"time":now})
 
 

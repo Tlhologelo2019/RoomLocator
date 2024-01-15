@@ -1,0 +1,125 @@
+{% extends 'registration/another_base.html' %}
+
+{% load static %}
+
+{% block title %}
+
+Add room
+
+{% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="row">
+	<div class="col-md-7">
+<header class = "header" id = "header" style="height:300px; background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2)), url('{% static 'images/img1.jpg' %}") center/cover no-repeat;"> 
+  <div class = "head-bottom flex mt-5">
+	<p style="width:20%; height:150px; font-size: 20px; border: 1px solid rgba(253, 253, 253, 0); padding:15px; background-color: rgba(255, 0, 0, 0); color:black;margin-top: 10px; border-radius:50%;">
+	<img src="{{ profile_item.profile_picture.url }}" alt="" width="90px" height="150px" style="border-radius:50%; ">
+	</p>
+</div>
+
+  </header>
+
+</div>
+<div class="col-md-5">
+	Information
+</div>
+</div>
+<div class="w3-container">
+	<h3>Rooms that are available</h3>
+   </div>
+   
+
+<div class="w3-row-padding w3-padding-16 mx-5">
+	{% for room in house.room_set.all %}
+<div class="w3-third w3-margin-bottom border p-3 mx-5">
+	<h3>{{room.type_of_room}}</h3>
+	{% if room.picture_main %}
+	<img src="{{ room.picture_main.url }}" alt="Kayla" style="width:100%" height="200px">
+	{% else%}
+	<img src="{% static 'images/img3.jpg' %}" alt="Kayla" style="width:100%" height="200px">
+	{% endif %}
+	<div class="w3-container w3-white">
+
+		<h6 class="w3-opacity">Price : R {{room.price}}</h6>
+		<p class="w3-large"><i class="fa fa-bath mx-2"></i> <i class="fa fa-phone mx-2"></i> <i class="fa fa-wifi mx-2"></i></p>
+		<div class="apartment-rating">
+			<i class="fa fa-star rating"></i>
+			<i class="fa fa-star rating"></i>
+			<i class="fa fa-star-half rating"></i>
+			<i class="fa fa-star-empty rating"></i>
+			<i class="fa fa-star-empty rating"></i>
+		</div>
+		<form action="" target="_blank">
+			<div class="w3-row-padding" style="margin:0 -16px;">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="w3-half w3-margin-bottom">
+							<label for="check-in" class="input-label"><i class="fa fa-calendar-o mx-1"></i>Check In</label>
+							<input type="date" class="input" id="check-in" required>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="input-group">
+							<label for="check-out" class="input-label"><i class="fa fa-calendar-o mx-2"></i>Check Out</label>
+							<input type="date" class="input" id="check-out" required>
+						</div>
+					</div>
+					
+				</div>
+			
+			
+			</div>
+		</form>
+		<button class="w3-button w3-block w3-black w3-margin-bottom" disabled>Choose Room</button>
+		
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<a href="{% url 'advert:delete' room.id %}" class="btn btn-danger">Delete</a>
+		</div>
+		<div class="col-md-6">
+			<a href="{% url 'advert:room_update' room.id %}" class="btn btn-primary">Update</a>
+		</div>
+	</div>
+</div>
+{% endfor %}
+
+</div>
+
+
+
+{% if pk_of_owner == user.id %}
+<div class="container">
+	<div class="row mt-5">
+		<div class="col-md-6 offset-md-3">
+			<div class="border p-3">
+				<h3>Add Your Rooms</h3>
+				<hr>
+				<form action="" method="POST" enctype="multipart/form-data">
+					{% csrf_token %}
+
+					{{form|crispy}}
+
+					<input class="btn btn-success" type="submit" value="Save Room">
+				</form>
+
+			</div>
+		</div>
+	</div>
+</div>
+{% endif %}
+
+<!-- Footer -->
+<footer class="w3-padding-32 w3-black w3-center w3-margin-top ">
+	<h5>Find Us On</h5>
+	<div class="w3-xlarge w3-padding-16 ">
+		<i class="fa fa-facebook-official w3-hover-opacity "></i>
+		<i class="fa fa-instagram w3-hover-opacity "></i>
+		<i class="fa fa-twitter w3-hover-opacity "></i>
+		<i class="fa fa-whatsapp w3-hover-opacity "></i>
+	</div>
+</footer>
+{% endblock %}

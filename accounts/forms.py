@@ -25,3 +25,7 @@ class SignUpForm(UserCreationForm):
 
 # attrs={'class': 'form-control'}
 
+class UserUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Usermodel
+        fields = ('first_name','last_name','email')
